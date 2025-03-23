@@ -64,7 +64,7 @@ router.post("/find-secret", async (req, res) => {
         message: "🎉 Secret message found!",
         secrets,
       });
-    } else {
+    } else if (secrets.length == 0) {
       return res.status(404).json({
         success: false,
         message: "No secret message found nearby!",

@@ -40,6 +40,20 @@ router.post("/signUp", async (req, res) => {
     return res.status(500).json({ message: "serverError" });
   }
 });
+router.post("/saveFcmToken", async (req, res) => {
+  const { userId, FcmToken } = req.body;
+  // console.log(userId, FcmToken);
+  try {
+    const user = await User.findById(userId);
+    if (user) {
+      user.FcmId = FcmToken;
+    }
+    user.save();
+    res.status(200);
+  } catch (error) {
+    res.status(404);
+  }
+});
 router.post("/getUserData", async (req, res) => {
   try {
     const { userName } = req.body;
