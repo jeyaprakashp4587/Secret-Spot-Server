@@ -37,7 +37,6 @@ router.post("/postMessage", async (req, res) => {
 
 router.post("/find-secret", async (req, res) => {
   const { latitude, longitude } = req.body;
-  console.log(latitude, longitude);
   if (!latitude || !longitude) {
     return res.status(400).json({
       success: false,
@@ -52,7 +51,7 @@ router.post("/find-secret", async (req, res) => {
             type: "Point",
             coordinates: [longitude, latitude],
           },
-          $maxDistance: 20,
+          $maxDistance: 30,
         },
       },
     });
