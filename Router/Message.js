@@ -56,7 +56,6 @@ router.post("/find-secret", async (req, res) => {
         },
       },
     });
-    console.log(secrets);
 
     if (secrets.length > 0) {
       return res.status(200).json({

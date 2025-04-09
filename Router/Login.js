@@ -10,7 +10,7 @@ router.post("/signIn", async (req, res) => {
     const findUser = await User.findOne({ Name: userName });
 
     if (findUser) {
-      if (findUser.Password === passWord) {
+      if (findUser.Password == passWord) {
         return res.json({ message: "success" }); // Fixed typo
       } else {
         return res.json({ message: "PasswordNull" });
@@ -57,14 +57,8 @@ router.post("/saveFcmToken", async (req, res) => {
 router.post("/getUserData", async (req, res) => {
   try {
     const { userName } = req.body;
-
-    if (!userName) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Username is required" });
-    }
-
-    const user = await User.findOne({ Name: userName });
+    console.log(userName);
+    const user = await User.findOne({ Name: userName.trim() });
     if (user) {
       return res.json({
         success: true,
