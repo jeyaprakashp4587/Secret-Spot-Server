@@ -52,7 +52,7 @@ router.post("/find-secret", async (req, res) => {
             type: "Point",
             coordinates: [longitude, latitude],
           },
-          $maxDistance: 50,
+          $maxDistance: 20,
         },
       },
     });
